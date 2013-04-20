@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd Responsive Google Maps
 Description: Add responsive google maps to your pages and posts via shortcode [tb_google_map].
-Version: 1.0.0
+Version: 1.0.1
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -81,6 +81,9 @@ function themeblvd_google_map_shortcode( $atts ) {
 	
 	// Unique ID
 	$id = rand();
+	
+	// Start output
+	ob_start();
 	?>
 	<script type="text/javascript">
 	jQuery(document).ready(function($) {
@@ -107,6 +110,6 @@ function themeblvd_google_map_shortcode( $atts ) {
 	</script>
 	<div id="tb_gmap_<?php echo $id; ?>" class="themeblvd-gmap" style="<?php echo $styles; ?>"></div>
 	<?php
-
+	return ob_get_clean();
 }
 add_shortcode( 'tb_google_map', 'themeblvd_google_map_shortcode' );
